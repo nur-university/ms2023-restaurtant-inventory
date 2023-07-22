@@ -17,6 +17,7 @@ namespace Restaurant.Inventory.Domain.Model.Items
 
         internal Item(string nombre, string codigo)
         {
+            Id = Guid.NewGuid();
             Nombre = nombre;
             Codigo = codigo;
             Stock = 0;
@@ -36,5 +37,7 @@ namespace Restaurant.Inventory.Domain.Model.Items
             }
             Stock += cantidadAdicional;
         }
+
+        private Item() { }
     }
 }

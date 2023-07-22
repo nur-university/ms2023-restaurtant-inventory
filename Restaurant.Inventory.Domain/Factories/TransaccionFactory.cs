@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Inventory.Domain.Factories
 {
-    public class TransacctionFactory : ITransaccionFactory
+    public class TransaccionFactory : ITransaccionFactory
     {
         public Transaccion CrearTransaccionIngreso()
         {

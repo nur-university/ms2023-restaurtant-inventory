@@ -25,6 +25,7 @@ namespace Restaurant.Inventory.Domain.Model.Transaciones
 
         internal Transaccion(TipoTransaccion tipo)
         {
+            Id = Guid.NewGuid();
             Estado = EstadoTransaccion.Registrada;
             Tipo = tipo;
             FechaRegistro = DateTime.Now;
@@ -74,5 +75,7 @@ namespace Restaurant.Inventory.Domain.Model.Transaciones
             Estado = EstadoTransaccion.Anulada;
             FechaAnulacion = DateTime.Now;
         }
+
+        private Transaccion() { }
     }
 }

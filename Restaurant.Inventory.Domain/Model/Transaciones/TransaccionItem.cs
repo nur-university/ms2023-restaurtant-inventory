@@ -17,10 +17,13 @@ namespace Restaurant.Inventory.Domain.Model.Transaciones
 
         internal TransaccionItem(Guid itemId, int cantidad, decimal costoUnitario)
         {
+            Id = Guid.NewGuid();
             ItemId = itemId;
             Cantidad = cantidad;
             CostoUnitario = costoUnitario;
             CostoTotal = cantidad * costoUnitario;
         }
+
+        private TransaccionItem() { }
     }
 }

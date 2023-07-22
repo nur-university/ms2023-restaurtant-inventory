@@ -7,7 +7,7 @@ public record ItemName : ValueObject
 {
     public string Value { get; init; }
 
-    internal ItemName(string value)
+    public ItemName(string value)
     {
         CheckRule(new StringNotNullOrEmptyRule(value));
         Value = value;

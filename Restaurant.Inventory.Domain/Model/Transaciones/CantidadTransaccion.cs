@@ -11,7 +11,7 @@ namespace Restaurant.Inventory.Domain.Model.Transaciones
     {
         public int Cantidad { get; private set; }
 
-        internal CantidadTransaccion(int cantidad)
+        public CantidadTransaccion(int cantidad)
         {
             if(cantidad <= 0)
             {

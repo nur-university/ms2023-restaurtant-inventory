@@ -1,4 +1,5 @@
-﻿using Restaurant.SharedKernel.Core;
+﻿using MediatR;
+using Restaurant.SharedKernel.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Inventory.Domain.Events
 {
-    public record TransaccionConfirmada : DomainEvent
+    public record TransaccionConfirmada : DomainEvent, INotification
     {
         public Guid TransaccionId { get; init; }
         public ICollection<DetalleTransaccionConfirmada> Detalle { get; init; }

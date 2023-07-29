@@ -12,7 +12,7 @@ using Restaurant.Inventory.Infrastructure.EF.Contexts;
 namespace Restaurtant.Inventory.Infrastructure.Migrations
 {
     [DbContext(typeof(ReadDbContext))]
-    [Migration("20230722151025_InitialStructure")]
+    [Migration("20230729143911_InitialStructure")]
     partial class InitialStructure
     {
         /// <inheritdoc />
@@ -62,7 +62,7 @@ namespace Restaurtant.Inventory.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("transactionItemId");
+                        .HasColumnName("transaccionItemId");
 
                     b.Property<int>("Cantidad")
                         .HasColumnType("int")
@@ -80,15 +80,15 @@ namespace Restaurtant.Inventory.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("itemId");
 
-                    b.Property<Guid>("TransactionId")
+                    b.Property<Guid>("TransaccionId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("transactionId");
+                        .HasColumnName("transaccionId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("TransactionId");
+                    b.HasIndex("TransaccionId");
 
                     b.ToTable("transaccionItem");
                 });
@@ -98,7 +98,7 @@ namespace Restaurtant.Inventory.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("transactionId");
+                        .HasColumnName("transaccionId");
 
                     b.Property<string>("Estado")
                         .IsRequired()
@@ -107,12 +107,10 @@ namespace Restaurtant.Inventory.Infrastructure.Migrations
                         .HasColumnName("estado");
 
                     b.Property<DateTime?>("FechaAnulacion")
-                        .IsRequired()
                         .HasColumnType("datetime2")
                         .HasColumnName("fechaAnulacion");
 
                     b.Property<DateTime?>("FechaConfirmacion")
-                        .IsRequired()
                         .HasColumnType("datetime2")
                         .HasColumnName("fechaConfirmacion");
 
@@ -139,15 +137,15 @@ namespace Restaurtant.Inventory.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Restaurant.Inventory.Infrastructure.EF.ReadModel.TransaccionReadModel", "Transaction")
+                    b.HasOne("Restaurant.Inventory.Infrastructure.EF.ReadModel.TransaccionReadModel", "Transaccion")
                         .WithMany("Items")
-                        .HasForeignKey("TransactionId")
+                        .HasForeignKey("TransaccionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Item");
 
-                    b.Navigation("Transaction");
+                    b.Navigation("Transaccion");
                 });
 
             modelBuilder.Entity("Restaurant.Inventory.Infrastructure.EF.ReadModel.TransaccionReadModel", b =>

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Restaurant.Inventory.Infrastructure.EF.ReadModel;
 internal class TransaccionReadModel
 {
     [Key]
-    [Column("transactionId")]
+    [Column("transaccionId")]
     public Guid Id { get; set; }
 
     [Required]
@@ -21,11 +22,11 @@ internal class TransaccionReadModel
     public DateTime FechaRegistro { get; set; }
 
 
-    [Required]
     [Column("fechaConfirmacion")]
+    [AllowNull]
     public DateTime? FechaConfirmacion { get; set; }
 
-    [Required]
+    [AllowNull]
     [Column("fechaAnulacion")]
     public DateTime? FechaAnulacion { get; set; }
 

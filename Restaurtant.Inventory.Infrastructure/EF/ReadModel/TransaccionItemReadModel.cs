@@ -7,7 +7,7 @@ namespace Restaurant.Inventory.Infrastructure.EF.ReadModel;
 internal class TransaccionItemReadModel
 {
     [Key]
-    [Column("transactionItemId")]
+    [Column("transaccionItemId")]
     public Guid Id { get; set; }
 
     [Required]
@@ -16,9 +16,9 @@ internal class TransaccionItemReadModel
     public ItemReadModel Item { get; set; }
 
     [Required]
-    [Column("transactionId")]
-    public Guid TransactionId { get; set; }
-    public TransaccionReadModel Transaction { get; set; }
+    [Column("transaccionId")]
+    public Guid TransaccionId { get; set; }
+    public TransaccionReadModel Transaccion { get; set; }
 
     [Required]
     [Column("cantidad")]

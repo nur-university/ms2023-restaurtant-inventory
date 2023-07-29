@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant.Inventory.Application.UseCases.Item.Query.GetItemList
+namespace Restaurant.Inventory.Application.UseCases.Items.Query.GetItemList
 {
     public class GetItemListQuery : IRequest<ICollection<ItemDto>>
     {

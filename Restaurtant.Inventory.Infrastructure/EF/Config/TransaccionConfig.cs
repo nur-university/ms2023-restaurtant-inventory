@@ -63,8 +63,11 @@ internal class TransaccionConfig : IEntityTypeConfiguration<Transaccion>,
     }
     public void Configure(EntityTypeBuilder<TransaccionItem> builder)
     {
-        builder.ToTable("DetalleTransaccion");
-        builder.HasKey(x => x.Id).HasName("transacctionItemId");
+        builder.ToTable("transaccionItem");
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Id)
+            .HasColumnName("transaccionItemId");
 
         var cantidadConverter = new ValueConverter<CantidadTransaccion, int>(
             cantidadValue => cantidadValue.Cantidad,

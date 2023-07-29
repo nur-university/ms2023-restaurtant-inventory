@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant.Inventory.Application.UseCases.Item.Command.CrearItem
+namespace Restaurant.Inventory.Application.UseCases.Items.Command.CrearItem
 {
     public class CrearItemCommand : IRequest<Guid>
     {

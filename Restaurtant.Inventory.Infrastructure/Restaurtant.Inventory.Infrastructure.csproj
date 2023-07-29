@@ -18,5 +18,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Restaurant.Inventory.Application\Restaurant.Inventory.Application.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 
 </Project>

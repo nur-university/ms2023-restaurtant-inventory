@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Inventory.Application.UseCases.Item.Command.CrearItem;
-using Restaurant.Inventory.Application.UseCases.Item.Query.GetItemList;
+using Restaurant.Inventory.Application.UseCases.Items.Command.CrearItem;
+using Restaurant.Inventory.Application.UseCases.Items.Query.GetItemList;
 
 namespace Restaurant.Inventory.WebAPI.Controllers;
 

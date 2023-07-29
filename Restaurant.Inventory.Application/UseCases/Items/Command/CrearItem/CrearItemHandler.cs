@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Restaurant.Inventory.Application.UseCases.Item.Command.CrearItem
+namespace Restaurant.Inventory.Application.UseCases.Items.Command.CrearItem
 {
     internal class CrearItemHandler : IRequestHandler<CrearItemCommand, Guid>
     {

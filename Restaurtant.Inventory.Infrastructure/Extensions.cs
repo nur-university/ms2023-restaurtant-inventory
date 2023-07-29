@@ -37,7 +37,7 @@ namespace Restaurtant.Inventory.Infrastructure
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IItemRepository, ItemRepository>();
-            //services.AddScoped<ITransaccionRepository, TransaccionRepository>();
+            services.AddScoped<ITransaccionRepository, TransaccionRepository>();
 
             using var scope = services.BuildServiceProvider().CreateScope();
             if (!isDevelopment)

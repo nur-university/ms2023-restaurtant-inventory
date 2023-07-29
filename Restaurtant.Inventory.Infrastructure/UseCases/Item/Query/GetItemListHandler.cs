@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.Inventory.Application.Dto.Item;
-using Restaurant.Inventory.Application.UseCases.Item.Query.GetItemList;
+using Restaurant.Inventory.Application.UseCases.Items.Query.GetItemList;
 using Restaurant.Inventory.Domain.Model.Items;
 using Restaurant.Inventory.Infrastructure.EF.Contexts;
 using Restaurant.Inventory.Infrastructure.EF.ReadModel;

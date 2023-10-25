@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Inventory.Application.UseCases.Items.Command.CrearItem;
@@ -25,6 +26,7 @@ public class ItemController : ControllerBase
         return Ok(itemId);
     }
 
+    [Authorize]
     [HttpGet]
     public async Task<IActionResult> SearchItems(string searchTerm = "")
     {
@@ -35,4 +37,25 @@ public class ItemController : ControllerBase
 
         return Ok(items);
     }
+
+    [Route("{itemId}")]
+    [HttpGet]
+    public async Task<ActionResult> Get(Guid itemId)
+    {
+        var items = await _mediator.Send(new GetItemListQuery()
+        {
+            SearchTerm = ""
+        });
+
+        foreach (var item in items)
+        {
+            if(item.ItemId == itemId)
+            {
+                return Ok(item);
+            }
+        }
+
+        return NotFound();
+    }
+
 }

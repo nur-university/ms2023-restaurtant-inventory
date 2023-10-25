@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Restaurant.Inventory.Application;
 using Restaurant.Inventory.Domain.Repositories;
 using Restaurant.Inventory.Infrastructure.EF.Contexts;
@@ -8,7 +10,9 @@ using Restaurant.SharedKernel.Core;
 using Restaurtant.Inventory.Infrastructure.EF;
 using Restaurtant.Inventory.Infrastructure.EF.Contexts;
 using Restaurtant.Inventory.Infrastructure.EF.Repositories;
+using Restaurtant.Inventory.Infrastructure.Security;
 using System.Reflection;
+using System.Text;
 
 namespace Restaurtant.Inventory.Infrastructure
 {
@@ -21,6 +25,8 @@ namespace Restaurtant.Inventory.Infrastructure
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
             AddDatabase(services, configuration, isDevelopment);
+
+            AddAuthentication(services, configuration);
             
             return services;
         }
@@ -45,6 +51,28 @@ namespace Restaurtant.Inventory.Infrastructure
                 var context = scope.ServiceProvider.GetRequiredService<ReadDbContext>();
                 context.Database.Migrate();
             }
+        }
+
+        private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
+        {
+            JwtOptions jwtoptions = configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(jwtOptions =>
+            {
+                var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtoptions.SecretKey));
+                jwtOptions.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = signingKey,
+                    ValidateIssuer = jwtoptions.ValidateIssuer,
+                    ValidateAudience = jwtoptions.ValidateAudience,
+                    ValidIssuer = jwtoptions.ValidIssuer,
+                    ValidAudience = jwtoptions.ValidAudience
+                };
+            });
         }
     }
 }
